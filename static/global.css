@@ -1,0 +1,163 @@
+/* global.css */
+
+/* Variables globales
+-------------------------------------------- */
+:root {
+    --primary-color: #00796b;
+    --primary-dark: #004d40;
+    --primary-light: #00695c;
+    --text-color: #333;
+    --background-color: #f5f7fa;
+    --white: #ffffff;
+    --price-color: #d32f2f;
+    --gradient-start: #e0f7fa;
+    --gradient-end: #80deea;
+    --shadow-normal: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    --shadow-hover: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Reset et styles de base
+-------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+}
+
+/* Typographie
+-------------------------------------------- */
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--primary-light);
+    margin-bottom: 1.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* Section d'accueil
+-------------------------------------------- */
+.welcome h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.intro-text {
+    font-size: 1.25rem;
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+}
+
+/* Titres de sections
+-------------------------------------------- */
+.section-title {
+    font-size: 2rem;
+    color: var(--primary-light);
+    margin-bottom: 1.5rem;
+    position: relative;
+    text-align: center;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: var(--primary-dark);
+    margin: 0.5rem auto 1.5rem;
+    border-radius: 2px;
+}
+
+/* Sections en vedette
+-------------------------------------------- */
+.featured-section {
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: var(--text-color);
+    text-align: center;
+}
+
+.featured-listings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+/* Cartes d'annonces
+-------------------------------------------- */
+.listing-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-normal);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.listing-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.listing-card p {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.listing-card .price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--price-color);
+    margin-top: 1rem;
+}
+
+/* Media Queries
+-------------------------------------------- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    .featured-listings {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Accessibilité
+-------------------------------------------- */
+@media (forced-colors: active) {
+    .listing-card {
+        border: 1px solid CanvasText;
+    }
+}
