@@ -5,11 +5,17 @@
     import { goto } from '$app/navigation';
 
     let searchQuery = "";
+    let isSearching = false;
 
-    const handleSearch = (event) => {
+    const handleSearch = async (event) => {
         event?.preventDefault();
         if (searchQuery.trim()) {
-            goto(`/search?query=${encodeURIComponent(searchQuery.trim())}`);
+            isSearching = true;
+            try {
+                await goto(`/search?query=${encodeURIComponent(searchQuery.trim())}`);
+            } finally {
+                isSearching = false;
+            }
         }
     };
 </script>
@@ -18,18 +24,28 @@
     <Header />
     
     <section class="global-search py-3 bg-light" role="search">
-        <div class="container d-flex justify-content-center">
-            <form on:submit|preventDefault={handleSearch} class="d-flex w-50">
+        <div class="container">
+            <form on:submit={handleSearch} class="search-form">
+                <div class="input-group">
                 <input 
                     type="search" 
                     placeholder="Recherchez une annonce..." 
-                    class="form-control me-2"
+                        class="form-control"
                     aria-label="Rechercher une annonce"
                     bind:value={searchQuery}
+                        disabled={isSearching}
                 />
-                <button type="submit" class="btn btn-primary">
+                    <button 
+                        type="submit" 
+                        class="btn btn-primary"
+                        disabled={isSearching || !searchQuery.trim()}
+                    >
+                        {#if isSearching}
+                        <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                        {/if}
                     Rechercher
                 </button>
+                </div>
             </form>
         </div>
     </section>
@@ -45,6 +61,7 @@
     :global(body) {
         margin: 0;
         min-height: 100vh;
+        padding-top: 76px;
     }
 
     .app-container {
@@ -64,13 +81,23 @@
     .global-search {
         border-bottom: 1px solid #ddd;
         position: sticky;
-        top: 76px; /* Ajusté pour tenir compte du header fixe */
+        top: 76px;
         z-index: 1000;
         background-color: white;
     }
 
-    /* Si votre navbar est fixed */
-    :global(body) {
-        padding-top: 76px;
+    .search-form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+        .search-form {
+            padding: 0 1rem;
+        }
+
+        .main-content {
+            padding: 1rem;
+        }
     }
 </style>
