@@ -1,5 +1,11 @@
 <script>
     import ListingCard from '../lib/components/ListingCard.svelte';
+    import { user } from '$lib/stores/user';
+    import { goto } from '$app/navigation';
+
+    function handlePostListing() {
+        goto('/post-listing');
+    }
 
     let featuredListings = [
         { id: 1, title: "Maison au bord de la mer", price: "450 000 €", description: "Magnifique maison avec vue sur l'océan." },
@@ -11,6 +17,16 @@
     <div class="welcome">
         <h1>Bienvenue sur Immo Express</h1>
         <p class="intro-text">Découvrez les meilleures annonces immobilières.</p>
+        
+        <!-- Ajout du bouton ici -->
+        {#if $user}
+            <button 
+                on:click={handlePostListing}
+                class="btn btn-primary btn-lg mt-3"
+            >
+                Déposer une annonce
+            </button>
+        {/if}
     </div>
 
     <h2 class="section-title">Annonces en vedette</h2>
@@ -20,4 +36,3 @@
         {/each}
     </div>
 </section>
-

@@ -27,14 +27,14 @@
         <div class="container">
             <form on:submit={handleSearch} class="search-form">
                 <div class="input-group">
-                <input 
-                    type="search" 
-                    placeholder="Recherchez une annonce..." 
+                    <input 
+                        type="search" 
+                        placeholder="Recherchez une annonce..." 
                         class="form-control"
-                    aria-label="Rechercher une annonce"
-                    bind:value={searchQuery}
+                        aria-label="Rechercher une annonce"
+                        bind:value={searchQuery}
                         disabled={isSearching}
-                />
+                    />
                     <button 
                         type="submit" 
                         class="btn btn-primary"
@@ -43,8 +43,8 @@
                         {#if isSearching}
                         <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
                         {/if}
-                    Rechercher
-                </button>
+                        Rechercher
+                    </button>
                 </div>
             </form>
         </div>

@@ -1,5 +1,5 @@
 <script>
-    import { user } from '../stores.js';
+    import { user } from '$lib/stores/user';
     import { onDestroy } from 'svelte';
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
@@ -155,4 +155,4 @@
         }
     }
 </style>
-
+import { user } from '$lib/stores/user.js';
